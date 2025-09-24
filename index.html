@@ -455,6 +455,15 @@
 
     <!-- Intro audio (plays only on slide 1) -->
     <audio id="introAudio" src="audio/1999.mp3" preload="auto"></audio>
+    <!-- Per-slide audio tracks -->
+    <audio id="audioSlide2" src="audio/Circles.mp3" preload="auto"></audio>
+    <audio id="audioSlide3" src="audio/StillIntoYou.mp3" preload="auto"></audio>
+    <audio id="audioSlide4" src="audio/BulletProofLove.mp3" preload="auto"></audio>
+    <audio id="audioSlide5" src="audio/PosterBoy.mp3" preload="auto"></audio>
+    <audio id="audioSlide6" src="audio/CrossYourMind.mp3" preload="auto"></audio>
+    <audio id="audioSlide7" src="audio/Bags.mp3" preload="auto"></audio>
+    <audio id="audioSlide8" src="audio/StoneColdSummer.mp3" preload="auto"></audio>
+    <audio id="audioSlide9" src="audio/KissMe.mp3" preload="auto"></audio>
 
     <!-- Fallback loader when opened via file:// -->
     <div class="navigation" id="loadDataUI" style="left: 2rem; right: auto; display: none;">
@@ -674,17 +683,8 @@
                 addFloatingHearts();
             }
 
-            // Handle intro audio: play only on slide 1, pause elsewhere
-            const audio = document.getElementById('introAudio');
-            if (audio) {
-                if (currentSlide === 0) {
-                    audio.volume = 0.6;
-                    audio.play().catch(() => {/* autoplay may be blocked until user interaction */});
-                } else {
-                    if (!audio.paused) audio.pause();
-                    audio.currentTime = 0;
-                }
-            }
+            // Handle audio per slide: play only the current slide's track
+            handleSlideAudio();
         }
 
         function nextSlide() {
@@ -753,11 +753,48 @@
                 nextSlide();
             }
             // First user interaction can unlock audio autoplay
-            const audio = document.getElementById('introAudio');
-            if (audio && currentSlide === 0) {
-                audio.play().catch(() => {});
-            }
+            tryPlayCurrentSlideAudio();
         });
+
+        const slideAudioIds = [
+            'introAudio',
+            'audioSlide2',
+            'audioSlide3',
+            'audioSlide4',
+            'audioSlide5',
+            'audioSlide6',
+            'audioSlide7',
+            'audioSlide8',
+            'audioSlide9'
+        ];
+
+        function pauseAllSlideAudio() {
+            slideAudioIds.forEach(id => {
+                const a = document.getElementById(id);
+                if (a) {
+                    if (!a.paused) a.pause();
+                    a.currentTime = 0;
+                }
+            });
+        }
+
+        function handleSlideAudio() {
+            pauseAllSlideAudio();
+            const id = slideAudioIds[currentSlide];
+            const a = document.getElementById(id);
+            if (a) {
+                a.volume = 0.6;
+                a.play().catch(() => {/* autoplay may be blocked until user interaction */});
+            }
+        }
+
+        function tryPlayCurrentSlideAudio() {
+            const id = slideAudioIds[currentSlide];
+            const a = document.getElementById(id);
+            if (a) {
+                a.play().catch(() => {});
+            }
+        }
 
         // Initialize
         loadData();
