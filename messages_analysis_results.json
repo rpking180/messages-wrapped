@@ -1,0 +1,341 @@
+{
+  "basic_stats": {
+    "total_messages": 28805,
+    "date_range": {
+      "first_message": "2024-02-12 02:01:18",
+      "last_message": "2025-09-24 13:41:49",
+      "days_talking": 590
+    },
+    "by_sender": {
+      "you": {
+        "count": 13988,
+        "percentage": 48.6
+      },
+      "her": {
+        "count": 14817,
+        "percentage": 51.4
+      }
+    },
+    "averages": {
+      "messages_per_day": 48.7,
+      "words_per_message": {
+        "overall": 7.5,
+        "you": 6.6,
+        "her": 8.4
+      }
+    }
+  },
+  "time_patterns": {
+    "by_hour": {
+      "Her": {
+        "0": 436,
+        "1": 234,
+        "2": 203,
+        "3": 33,
+        "4": 25,
+        "5": 25,
+        "6": 41,
+        "7": 82,
+        "8": 138,
+        "9": 248,
+        "10": 336,
+        "11": 741,
+        "12": 996,
+        "13": 1120,
+        "14": 1081,
+        "15": 1198,
+        "16": 955,
+        "17": 944,
+        "18": 1128,
+        "19": 1189,
+        "20": 1294,
+        "21": 1010,
+        "22": 751,
+        "23": 609
+      },
+      "You": {
+        "0": 414,
+        "1": 186,
+        "2": 185,
+        "3": 12,
+        "4": 9,
+        "5": 15,
+        "6": 34,
+        "7": 112,
+        "8": 168,
+        "9": 214,
+        "10": 341,
+        "11": 777,
+        "12": 932,
+        "13": 1149,
+        "14": 993,
+        "15": 1107,
+        "16": 899,
+        "17": 892,
+        "18": 1100,
+        "19": 1083,
+        "20": 1165,
+        "21": 901,
+        "22": 686,
+        "23": 614
+      }
+    },
+    "by_day": {
+      "Her": {
+        "Friday": 1954,
+        "Monday": 2010,
+        "Saturday": 1371,
+        "Sunday": 2586,
+        "Thursday": 2518,
+        "Tuesday": 2478,
+        "Wednesday": 1900
+      },
+      "You": {
+        "Friday": 1786,
+        "Monday": 1873,
+        "Saturday": 1253,
+        "Sunday": 2570,
+        "Thursday": 2376,
+        "Tuesday": 2337,
+        "Wednesday": 1793
+      }
+    },
+    "by_month": {
+      "Her": {
+        "2024-02": 100,
+        "2024-09": 1016,
+        "2024-10": 529,
+        "2024-11": 572,
+        "2024-12": 1237,
+        "2025-01": 1437,
+        "2025-02": 1446,
+        "2025-03": 743,
+        "2025-04": 1487,
+        "2025-05": 2320,
+        "2025-06": 910,
+        "2025-07": 2125,
+        "2025-08": 231,
+        "2025-09": 664
+      },
+      "You": {
+        "2024-02": 88,
+        "2024-09": 964,
+        "2024-10": 481,
+        "2024-11": 544,
+        "2024-12": 1395,
+        "2025-01": 1370,
+        "2025-02": 1426,
+        "2025-03": 741,
+        "2025-04": 1378,
+        "2025-05": 1965,
+        "2025-06": 726,
+        "2025-07": 2009,
+        "2025-08": 230,
+        "2025-09": 671
+      }
+    },
+    "by_year": {
+      "Her": {
+        "2024": 3454,
+        "2025": 11363
+      },
+      "You": {
+        "2024": 3472,
+        "2025": 10516
+      }
+    },
+    "peak_hour": {
+      "overall": 20,
+      "you": 20,
+      "her": 20
+    },
+    "peak_day": {
+      "overall": "Sunday",
+      "you": "Sunday",
+      "her": "Sunday"
+    }
+  },
+  "emoji_analysis": {
+    "total_emojis": {
+      "you": 197,
+      "her": 1279
+    },
+    "top_emojis": {
+      "you": {
+        "😭": 21,
+        "😏": 14,
+        "🤔": 12,
+        "😈": 10,
+        "😔": 9,
+        "😢": 9,
+        "😉": 6,
+        "♂": 6,
+        "☹": 5,
+        "😬": 5
+      },
+      "her": {
+        "😭": 176,
+        "😞": 82,
+        "💗": 60,
+        "💔": 56,
+        "😒": 47,
+        "😏": 46,
+        "😇": 45,
+        "💋": 45,
+        "❤": 43,
+        "😭😭": 30
+      }
+    },
+    "emoji_diversity": {
+      "you": 83,
+      "her": 164
+    }
+  },
+  "word_analysis": {
+    "top_words": {
+      "you": {
+        "good": 487,
+        "going": 417,
+        "what": 387,
+        "want": 363,
+        "think": 363,
+        "one": 320,
+        "now": 317,
+        "yes": 316,
+        "time": 316,
+        "about": 305,
+        "there": 291,
+        "how": 282,
+        "know": 266,
+        "also": 261,
+        "when": 257,
+        "her": 257,
+        "too": 255,
+        "more": 253,
+        "all": 249,
+        "out": 229
+      },
+      "her": {
+        "what": 586,
+        "love": 505,
+        "out": 445,
+        "think": 445,
+        "one": 428,
+        "good": 410,
+        "want": 405,
+        "know": 397,
+        "how": 395,
+        "going": 395,
+        "her": 379,
+        "time": 367,
+        "him": 362,
+        "about": 362,
+        "when": 360,
+        "too": 342,
+        "all": 339,
+        "more": 334,
+        "them": 327,
+        "now": 326
+      }
+    },
+    "unique_phrases": {
+      "two_word": {
+        "love you": 301,
+        "are you": 300,
+        "good morning": 281,
+        "you want": 266,
+        "i’m going": 260,
+        "you can": 246,
+        "you have": 238,
+        "you are": 201,
+        "for the": 184,
+        "did you": 184
+      },
+      "three_word": {
+        "good morning love": 95,
+        "love you more": 89,
+        "good morning darling": 64,
+        "are you going": 53,
+        "what are you": 46,
+        "you don’t have": 40,
+        "thank you for": 32,
+        "the first time": 31,
+        "what did you": 26,
+        "i’m not going": 26
+      }
+    }
+  },
+  "conversation_dynamics": {
+    "response_times": {
+      "you": {
+        "average_minutes": 11.4,
+        "median_minutes": 0.2
+      },
+      "her": {
+        "average_minutes": 19.9,
+        "median_minutes": 0.5
+      }
+    },
+    "longest_streak_days": 55,
+    "night_owl_vs_early_bird": {
+      "late_night_messages": 1777,
+      "early_morning_messages": 1037
+    }
+  },
+  "special_phrases": {
+    "love": {
+      "you": 1785,
+      "her": 1896,
+      "total": 3681
+    },
+    "miss": {
+      "you": 38,
+      "her": 45,
+      "total": 83
+    },
+    "sorry": {
+      "you": 62,
+      "her": 131,
+      "total": 193
+    },
+    "thanks": {
+      "you": 102,
+      "her": 138,
+      "total": 240
+    },
+    "good_morning": {
+      "you": 150,
+      "her": 144,
+      "total": 294
+    },
+    "good_night": {
+      "you": 48,
+      "her": 64,
+      "total": 112
+    },
+    "cute_names": {
+      "you": 377,
+      "her": 752,
+      "total": 1129
+    },
+    "excited": {
+      "you": 47,
+      "her": 195,
+      "total": 242
+    },
+    "laughing": {
+      "you": 134,
+      "her": 92,
+      "total": 226
+    }
+  },
+  "fun_facts": {
+    "messages_per_month": 1464.7,
+    "who_talks_more": "Her",
+    "who_uses_more_emojis": "Her",
+    "who_writes_longer": "Her",
+    "who_responds_faster": "You",
+    "who_says_love_more": "Her",
+    "who_laughs_more": "You"
+  }
+}

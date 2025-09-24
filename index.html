@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages Wrapped Year 1 💕</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow-x: hidden;
+            color: white;
+        }
+        
+        .container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .slide.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .slide.prev {
+            transform: translateX(-100%);
+        }
+        
+        /* Slide-specific backgrounds */
+        .slide-1 { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .slide-2 { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .slide-3 { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        .slide-4 { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+        .slide-5 { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+        .slide-6 { background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); }
+        .slide-7 { background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); }
+        .slide-8 { background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); }
+        .slide-9 { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        
+        h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fff, #f0f0f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        
+        h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .big-number {
+            font-size: 8rem;
+            font-weight: 900;
+            margin: 1rem 0;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            background: linear-gradient(45deg, #fff, #f8f8f8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+        
+        .description {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            max-width: 600px;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+            max-width: 800px;
+            width: 100%;
+        }
+        /* Force a balanced 2x2 grid on the Love slide so cards don't wrap 3+1 */
+        .slide-6 .stat-grid {
+            grid-template-columns: repeat(2, minmax(240px, 1fr));
+            max-width: 900px;
+            justify-items: stretch;
+        }
+        
+        .stat-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .emoji-list {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+        
+        .emoji-item {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 1rem 1.5rem;
+            border-radius: 15px;
+            font-size: 1.5rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b6b, #ffd93d, #6bcf7f);
+            transition: width 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .navigation {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 1000;
+        }
+        
+        .nav-button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 1rem 2rem;
+            margin: 0 0.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .nav-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .nav-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .love-animation {
+            position: absolute;
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.8);
+            pointer-events: none;
+            animation: float 3s infinite ease-in-out;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0; }
+            50% { transform: translateY(-50px) rotate(10deg); opacity: 1; }
+        }
+        
+        .slide-counter {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            opacity: 0.8;
+            z-index: 1000;
+        }
+        
+        .heart-bg {
+            position: absolute;
+            font-size: 20rem;
+            opacity: 0.05;
+            z-index: -1;
+            animation: pulse 4s infinite ease-in-out;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .word-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            max-width: 800px;
+            margin: 2rem 0;
+        }
+        
+        .word-item {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: transform 0.3s ease;
+        }
+        
+        .word-item:hover {
+            transform: scale(1.1);
+        }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            .big-number { font-size: 5rem; }
+            .subtitle { font-size: 1.2rem; }
+            .description { font-size: 1rem; }
+            .stat-grid { grid-template-columns: 1fr; }
+            .slide-6 .stat-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    <div class="slide-counter" id="slideCounter">1 / 9</div>
+    
+    <div class="container">
+        <!-- Slide 1: Welcome -->
+        <div class="slide active slide-1" id="slide1">
+            <div class="heart-bg">💕</div>
+            <h1>Messages Wrapped</h1>
+            <div class="subtitle">Your Love Story in Data</div>
+            <div class="description">
+                A year of conversations, memories, and moments together.<br>
+                From late night texts to good morning messages - this is your story.
+            </div>
+        </div>
+        
+        <!-- Slide 2: Total Messages -->
+        <div class="slide slide-2" id="slide2">
+            <h2>You Two Really Talk!</h2>
+            <div class="big-number" id="totalMessages">0</div>
+            <div class="subtitle">Total Messages Exchanged</div>
+            <div class="description" id="messagesDescription">
+                That's like having a conversation every single day!
+            </div>
+        </div>
+        
+        <!-- Slide 3: Time Period -->
+        <div class="slide slide-3" id="slide3">
+            <h2>Your Journey</h2>
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <span class="stat-number" id="daysTalking">0</span>
+                    <span class="stat-label">Days of Conversations</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="messagesPerDay">0</span>
+                    <span class="stat-label">Messages Per Day</span>
+                </div>
+            </div>
+            <div class="description" id="journeyDescription">
+                From your first message to now - what a beautiful journey! 💕
+            </div>
+        </div>
+        
+        <!-- Slide 4: Who Talks More -->
+        <div class="slide slide-4" id="slide4">
+            <h2>The Chatterbox Award Goes To...</h2>
+            <div class="big-number" id="bigTalker">You!</div>
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <span class="stat-number" id="youMessages">0</span>
+                    <span class="stat-label">Ryan's Messages</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="herMessages">0</span>
+                    <span class="stat-label">Catherine's Messages</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 5: Peak Hours -->
+        <div class="slide slide-5" id="slide5">
+            <h2>Night Owls or Early Birds?</h2>
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <span class="stat-number" id="peakHour">9</span>
+                    <span class="stat-label">Peak Messaging Hour</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="lateNightCount">0</span>
+                    <span class="stat-label">Late Night Messages<br>(12AM-6AM)</span>
+                </div>
+            </div>
+            <div class="description">
+                Those midnight conversations hit different 🌙
+            </div>
+        </div>
+        
+        <!-- Slide 6: Love & Emotions -->
+        <div class="slide slide-6" id="slide6">
+            <div class="heart-bg">❤️</div>
+            <h2>All About Love</h2>
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <span class="stat-number" id="loveCount">0</span>
+                    <span class="stat-label">"Love You" Messages</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="laughCount">0</span>
+                    <span class="stat-label">Times You Made Each Other Laugh</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="cuteNamesCount">0</span>
+                    <span class="stat-label">Cute Names Used</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="missCount">0</span>
+                    <span class="stat-label">"Miss You" Messages</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 7: Emojis -->
+        <div class="slide slide-7" id="slide7">
+            <h2>Your Emoji Personality</h2>
+            <div class="subtitle" id="emojiWinner">Ryan used more emojis! 🎉</div>
+            <div class="emoji-list" id="topEmojis">
+                <!-- Will be populated with top emojis -->
+            </div>
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <span class="stat-number" id="totalEmojiCount">0</span>
+                    <span class="stat-label">Total Emojis Sent</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="emojiDiversity">0</span>
+                    <span class="stat-label">Different Emojis Used</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 8: Response Time -->
+        <div class="slide slide-8" id="slide8">
+            <h2>Response Time Champions</h2>
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <span class="stat-number" id="yourResponseTime">0</span>
+                    <span class="stat-label">Ryan's Avg Response (minutes)</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="herResponseTime">0</span>
+                    <span class="stat-label">Catherine's Avg Response (minutes)</span>
+                </div>
+            </div>
+            <div class="description" id="responseDescription">
+                Someone's always eager to reply! 💝
+            </div>
+        </div>
+        
+        <!-- Slide 9: Final -->
+        <div class="slide slide-9" id="slide9">
+            <div class="heart-bg">💕</div>
+            <h1>Here's to Many More</h1>
+            <div class="subtitle">Messages, Memories, and Moments</div>
+            <div class="description">
+                Thank you for filling every day with love, laughter, and endless conversations.<br>
+                Happy Anniversary! 💕
+            </div>
+            <div class="subtitle" style="margin-top: 2rem; font-size: 1rem; opacity: 0.7;">
+                Made with ❤️ for the most amazing girlfriend
+            </div>
+        </div>
+    </div>
+    
+    <div class="navigation">
+        <button class="nav-button" id="prevBtn" onclick="prevSlide()">← Previous</button>
+        <button class="nav-button" id="nextBtn" onclick="nextSlide()">Next →</button>
+    </div>
+
+    <!-- Fallback loader when opened via file:// -->
+    <div class="navigation" id="loadDataUI" style="left: 2rem; right: auto; display: none;">
+        <input type="file" id="fileInput" accept="application/json,.json" style="display:none" />
+        <button class="nav-button" id="chooseFileBtn">Load data JSON</button>
+        <span id="loadHint" style="margin-left: 0.75rem; opacity: 0.8; font-weight: 600;">Pick messages_analysis_results.json</span>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const totalSlides = 9;
+        let analysisData = {};
+
+        // Load data from JSON file
+        async function loadData() {
+            try {
+                const response = await fetch('messages_analysis_results.json');
+                analysisData = await response.json();
+                populateSlides();
+                hideLoadDataUI();
+            } catch (error) {
+                console.error('Error loading data:', error);
+                // Likely opened via file:// — offer picker
+                showLoadDataUI('Could not auto-load data. Please pick the JSON file.');
+            }
+        }
+
+        function useSampleData() {
+            // Sample data structure - replace with your actual data
+            analysisData = {
+                basic_stats: {
+                    total_messages: 1234,
+                    date_range: {
+                        days_talking: 365,
+                        first_message: "2024-01-01",
+                        last_message: "2024-12-31"
+                    },
+                    averages: {
+                        messages_per_day: 3.4
+                    },
+                    by_sender: {
+                        you: { count: 650, percentage: 52.7 },
+                        her: { count: 584, percentage: 47.3 }
+                    }
+                },
+                time_patterns: {
+                    peak_hour: { overall: 21 }
+                },
+                conversation_dynamics: {
+                    response_times: {
+                        you: { average_minutes: 15.3 },
+                        her: { average_minutes: 12.8 }
+                    },
+                    night_owl_vs_early_bird: {
+                        late_night_messages: 123
+                    }
+                },
+                special_phrases: {
+                    love: { total: 89 },
+                    laughing: { total: 234 },
+                    cute_names: { total: 156 },
+                    miss: { total: 67 }
+                },
+                emoji_analysis: {
+                    total_emojis: { you: 456, her: 389 },
+                    emoji_diversity: { you: 89, her: 92 },
+                    top_emojis: {
+                        you: { "😘": 45, "❤️": 38, "😂": 29, "🥰": 25, "😍": 22 },
+                        her: { "💕": 42, "😊": 35, "😘": 30, "🥺": 28, "❤️": 26 }
+                    }
+                },
+                fun_facts: {
+                    who_talks_more: "You",
+                    who_uses_more_emojis: "You",
+                    who_responds_faster: "Her"
+                }
+            };
+            populateSlides();
+        }
+
+        function toDisplayName(keyOrLabel) {
+            if (keyOrLabel === 'You') return 'Ryan';
+            if (keyOrLabel === 'Her') return 'Catherine';
+            return keyOrLabel;
+        }
+
+        function showLoadDataUI(message) {
+            const ui = document.getElementById('loadDataUI');
+            const hint = document.getElementById('loadHint');
+            if (message) hint.textContent = message + ' (messages_analysis_results.json)';
+            ui.style.display = 'block';
+        }
+
+        function hideLoadDataUI() {
+            const ui = document.getElementById('loadDataUI');
+            ui.style.display = 'none';
+        }
+
+        function populateSlides() {
+            const stats = analysisData.basic_stats;
+            const patterns = analysisData.time_patterns;
+            const dynamics = analysisData.conversation_dynamics;
+            const phrases = analysisData.special_phrases;
+            const emojis = analysisData.emoji_analysis;
+            const facts = analysisData.fun_facts;
+
+            // Slide 2: Total Messages
+            document.getElementById('totalMessages').textContent = stats.total_messages.toLocaleString();
+            document.getElementById('messagesDescription').textContent = 
+                `That's ${Math.round(stats.total_messages / stats.date_range.days_talking)} messages per day on average!`;
+
+            // Slide 3: Journey
+            document.getElementById('daysTalking').textContent = stats.date_range.days_talking;
+            document.getElementById('messagesPerDay').textContent = stats.averages.messages_per_day;
+
+            // Slide 4: Who talks more
+            document.getElementById('bigTalker').textContent =
+                facts.who_talks_more === 'You' ? 'Ryan! 🗣️' : 'Catherine! 💬';
+            document.getElementById('youMessages').textContent = stats.by_sender.you.count.toLocaleString();
+            document.getElementById('herMessages').textContent = stats.by_sender.her.count.toLocaleString();
+
+            // Slide 5: Peak hours
+            const hour = patterns.peak_hour?.overall || 21;
+            const displayHour = hour === 0 ? '12 AM' : 
+                              hour < 12 ? `${hour} AM` : 
+                              hour === 12 ? '12 PM' : `${hour - 12} PM`;
+            document.getElementById('peakHour').textContent = displayHour;
+            document.getElementById('lateNightCount').textContent = dynamics.night_owl_vs_early_bird?.late_night_messages || 0;
+
+            // Slide 6: Love & emotions
+            document.getElementById('loveCount').textContent = phrases.love?.total || 0;
+            document.getElementById('laughCount').textContent = phrases.laughing?.total || 0;
+            document.getElementById('cuteNamesCount').textContent = phrases.cute_names?.total || 0;
+            document.getElementById('missCount').textContent = phrases.miss?.total || 0;
+
+            // Slide 7: Emojis
+            document.getElementById('emojiWinner').textContent = 
+                `${toDisplayName(facts.who_uses_more_emojis)} used more emojis! 🎉`;
+            document.getElementById('totalEmojiCount').textContent = 
+                (emojis.total_emojis.you + emojis.total_emojis.her).toLocaleString();
+            document.getElementById('emojiDiversity').textContent = 
+                Math.max(emojis.emoji_diversity?.you || 0, emojis.emoji_diversity?.her || 0);
+
+            // Populate top emojis
+            const topEmojisContainer = document.getElementById('topEmojis');
+            const allEmojis = { ...emojis.top_emojis?.you, ...emojis.top_emojis?.her };
+            const sortedEmojis = Object.entries(allEmojis)
+                .sort(([,a], [,b]) => b - a)
+                .slice(0, 8);
+            
+            topEmojisContainer.innerHTML = sortedEmojis
+                .map(([emoji, count]) => `<div class="emoji-item">${emoji} ${count}</div>`)
+                .join('');
+
+            // Slide 8: Response times
+            document.getElementById('yourResponseTime').textContent = 
+                Math.round(dynamics.response_times?.you?.average_minutes || 0);
+            document.getElementById('herResponseTime').textContent = 
+                Math.round(dynamics.response_times?.her?.average_minutes || 0);
+            
+            const fasterResponder = toDisplayName(facts.who_responds_faster);
+            document.getElementById('responseDescription').textContent = 
+                `${fasterResponder} is usually quicker to respond! 💝`;
+        }
+
+        // Support manual JSON selection when not served via HTTP
+        document.addEventListener('DOMContentLoaded', () => {
+            const fileInput = document.getElementById('fileInput');
+            const chooseBtn = document.getElementById('chooseFileBtn');
+            if (chooseBtn) {
+                chooseBtn.addEventListener('click', () => fileInput.click());
+            }
+            if (fileInput) {
+                fileInput.addEventListener('change', (e) => {
+                    const file = e.target.files && e.target.files[0];
+                    if (!file) return;
+                    const reader = new FileReader();
+                    reader.onload = () => {
+                        try {
+                            analysisData = JSON.parse(reader.result);
+                            populateSlides();
+                            hideLoadDataUI();
+                        } catch (err) {
+                            console.error('Failed to parse selected JSON:', err);
+                            showLoadDataUI('Invalid JSON selected. Please pick the correct file.');
+                        }
+                    };
+                    reader.readAsText(file);
+                });
+            }
+        });
+
+        function updateSlide() {
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active', 'prev');
+                if (index === currentSlide) {
+                    slide.classList.add('active');
+                } else if (index < currentSlide) {
+                    slide.classList.add('prev');
+                }
+            });
+
+            // Update progress bar
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = `${progress}%`;
+
+            // Update slide counter
+            document.getElementById('slideCounter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+
+            // Update navigation buttons
+            document.getElementById('prevBtn').disabled = currentSlide === 0;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+
+            // Add floating hearts on love slide
+            if (currentSlide === 5) {
+                addFloatingHearts();
+            }
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                updateSlide();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlide();
+            }
+        }
+
+        function addFloatingHearts() {
+            const hearts = ['💕', '❤️', '💖', '💝', '🥰'];
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'love-animation';
+                    heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                    heart.style.left = Math.random() * 100 + 'vw';
+                    heart.style.animationDelay = Math.random() * 2 + 's';
+                    document.body.appendChild(heart);
+                    
+                    setTimeout(() => heart.remove(), 3000);
+                }, i * 500);
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                prevSlide();
+            }
+        });
+
+        // Touch/swipe support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                nextSlide();
+            } else if (touchEndX > touchStartX + 50) {
+                prevSlide();
+            }
+        }
+
+        // Auto-advance on click (optional)
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.navigation') && !e.target.closest('button')) {
+                nextSlide();
+            }
+        });
+
+        // Initialize
+        loadData();
+        updateSlide();
+    </script>
+</body>
+</html>
