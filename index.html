@@ -453,6 +453,9 @@
         <button class="nav-button" id="nextBtn" onclick="nextSlide()">Next →</button>
     </div>
 
+    <!-- Intro audio (plays only on slide 1) -->
+    <audio id="introAudio" src="audio/1999.mp3" preload="auto"></audio>
+
     <!-- Fallback loader when opened via file:// -->
     <div class="navigation" id="loadDataUI" style="left: 2rem; right: auto; display: none;">
         <input type="file" id="fileInput" accept="application/json,.json" style="display:none" />
@@ -670,6 +673,18 @@
             if (currentSlide === 5) {
                 addFloatingHearts();
             }
+
+            // Handle intro audio: play only on slide 1, pause elsewhere
+            const audio = document.getElementById('introAudio');
+            if (audio) {
+                if (currentSlide === 0) {
+                    audio.volume = 0.6;
+                    audio.play().catch(() => {/* autoplay may be blocked until user interaction */});
+                } else {
+                    if (!audio.paused) audio.pause();
+                    audio.currentTime = 0;
+                }
+            }
         }
 
         function nextSlide() {
@@ -736,6 +751,11 @@
         document.addEventListener('click', (e) => {
             if (!e.target.closest('.navigation') && !e.target.closest('button')) {
                 nextSlide();
+            }
+            // First user interaction can unlock audio autoplay
+            const audio = document.getElementById('introAudio');
+            if (audio && currentSlide === 0) {
+                audio.play().catch(() => {});
             }
         });
 
